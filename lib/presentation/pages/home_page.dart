@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'provider_page.dart';
 import 'riverpod_page.dart';
 import 'bloc_page.dart';
+import 'products_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -39,6 +39,13 @@ class HomePage extends StatelessWidget {
                 MaterialPageRoute(builder: (_) => const BlocPage()),
               );
             },
+          ),
+          ListTile(
+            title: const Text("Produtos (VTXSTORE)"),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ProductsPage()),
+            ),
           ),
         ],
       ),
