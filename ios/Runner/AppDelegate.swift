@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Flutter
 import UIKit
 
@@ -15,18 +14,3 @@ import UIKit
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
   }
 }
-=======
-import Flutter
-import UIKit
-
-@main
-@objc class AppDelegate: FlutterAppDelegate {
-  override func application(
-    _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-  ) -> Bool {
-    GeneratedPluginRegistrant.register(with: self)
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
-  }
-}
->>>>>>> 5d0b39e590879cf450a6c897b10eb46a7d959bc6

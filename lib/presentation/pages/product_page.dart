@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_arquitetura_02/domain/entities/product.dart';
-import 'package:mobile_arquitetura_02/presentation/viewmodels/product_viewmodel.dart';
+import 'package:state_mobile_aula01/domain/entities/product.dart';
+import 'package:state_mobile_aula01/presentation/viewmodels/product_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 const _darkBlue = Color(0xFF0D1B2A);
@@ -47,7 +47,8 @@ class ProductPage extends StatelessWidget {
                       color: _favoriteColor,
                       shape: BoxShape.circle,
                     ),
-                    constraints: const BoxConstraints(minWidth: 18, minHeight: 18),
+                    constraints:
+                        const BoxConstraints(minWidth: 18, minHeight: 18),
                     child: Text(
                       '${viewmodel.favoriteCount}',
                       style: const TextStyle(
@@ -87,13 +88,14 @@ class ProductPage extends StatelessWidget {
               _FavoriteFilterTile(viewmodel: viewmodel),
               Expanded(
                 child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   itemCount: viewmodel.products.length,
                   itemBuilder: (context, index) {
                     return _ProductCard(
                       product: viewmodel.products[index],
-                      onToggleFavorite: () =>
-                          viewmodel.toggleFavorite(viewmodel.products[index].id),
+                      onToggleFavorite: () => viewmodel
+                          .toggleFavorite(viewmodel.products[index].id),
                     );
                   },
                 ),
@@ -146,9 +148,7 @@ class _ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 6),
-      color: product.isFavorited
-          ? _midBlue.withValues(alpha: 0.95)
-          : _midBlue,
+      color: product.isFavorited ? _midBlue.withValues(alpha: 0.95) : _midBlue,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(

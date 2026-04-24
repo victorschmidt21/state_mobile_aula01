@@ -1,8 +1,8 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
-import 'package:mobile_arquitetura_02/domain/entities/product.dart';
-import 'package:mobile_arquitetura_02/domain/repositories/product_repository.dart';
+import 'package:state_mobile_aula01/domain/entities/product.dart';
+import 'package:state_mobile_aula01/domain/repositories/product_repository.dart';
 
 class ProductViewmodel extends ChangeNotifier {
   final ProductRepository repository;

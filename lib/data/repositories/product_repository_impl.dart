@@ -1,8 +1,8 @@
-import 'package:mobile_arquitetura_02/core/errors/failure.dart';
-import 'package:mobile_arquitetura_02/data/datasources/product_cache_datasource.dart';
-import 'package:mobile_arquitetura_02/data/datasources/product_remote_datasource.dart';
-import 'package:mobile_arquitetura_02/domain/entities/product.dart';
-import 'package:mobile_arquitetura_02/domain/repositories/product_repository.dart';
+import 'package:state_mobile_aula01/core/errors/failure.dart';
+import 'package:state_mobile_aula01/data/datasources/product_cache_datasource.dart';
+import 'package:state_mobile_aula01/data/datasources/product_remote_datasource.dart';
+import 'package:state_mobile_aula01/domain/entities/product.dart';
+import 'package:state_mobile_aula01/domain/repositories/product_repository.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
   final ProductRemoteDatasource remote;
