@@ -4,6 +4,7 @@ import '../../state/provider/product_provider.dart';
 import '../../data/models/product.dart';
 import 'product_detail_page.dart';
 import 'favorites_page.dart';
+import 'product_form_page.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});
@@ -34,6 +35,15 @@ class ProductsPage extends StatelessWidget {
         ],
       ),
       body: _buildBody(context, provider),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const ProductFormPage()),
+        ),
+        backgroundColor: const Color(0xFF1565C0),
+        tooltip: 'Adicionar produto',
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
     );
   }
 
@@ -113,7 +123,7 @@ class ProductsPage extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 14,
         crossAxisSpacing: 14,
-        childAspectRatio: 0.68,
+        childAspectRatio: 0.58,
       ),
       itemCount: provider.products.length,
       itemBuilder: (context, index) {
@@ -201,12 +211,88 @@ class _ProductCard extends StatelessWidget {
                         color: Color(0xFF1565C0),
                       ),
                     ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) =>
+                                    ProductFormPage(product: product),
+                              ),
+                            ),
+                            icon: const Icon(Icons.edit_outlined, size: 14),
+                            label: const Text('Editar',
+                                style: TextStyle(fontSize: 11)),
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: const Color(0xFF1565C0),
+                              side: const BorderSide(
+                                  color: Color(0xFF1565C0), width: 1),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 4),
+                              minimumSize: Size.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: () => _confirmDelete(context),
+                            icon: const Icon(Icons.delete_outline_rounded,
+                                size: 14),
+                            label: const Text('Excluir',
+                                style: TextStyle(fontSize: 11)),
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: const Color(0xFFB00020),
+                              side: const BorderSide(
+                                  color: Color(0xFFB00020), width: 1),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 4),
+                              minimumSize: Size.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _confirmDelete(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Excluir produto'),
+        content: Text('Deseja excluir "${product.title}"?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancelar'),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+                foregroundColor: const Color(0xFFB00020)),
+            onPressed: () {
+              Navigator.pop(ctx);
+              context.read<ProductProvider>().deleteProduct(product.id);
+            },
+            child: const Text('Excluir'),
+          ),
+        ],
       ),
     );
   }
